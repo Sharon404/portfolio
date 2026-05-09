@@ -10,28 +10,96 @@ type GitHubRepo = {
   stargazers_count: number;
   forks_count: number;
   language: string | null;
+  size: number;
+  archived: boolean;
+  fork: boolean;
+  topics: string[];
   updated_at: string;
-  topics?: string[];
 };
 
-const DEFAULT_USER = process.env.GITHUB_USERNAME ?? "your-username";
+const FALLBACK_GITHUB_USER = "Sharon404";
+const DEFAULT_USER = "your-username";
+
+const BEGINNER_KEYWORDS = [
+  "tutorial",
+  "practice",
+  "learning",
+  "sandbox",
+  "test",
+  "hello-world",
+  "first",
+  "sample",
+  "playground",
+  "exercise",
+  "bootcamp",
+  "assignment",
+  "classwork",
+  "demo",
+];
+
+function parseCsvEnv(value: string | undefined): string[] {
+  if (!value) {
+    return [];
+  }
+
+  return value
+    .split(",")
+    .map((item) => item.trim().toLowerCase())
+    .filter(Boolean);
+}
+
+function looksLikeSimpleProject(repo: GitHubRepo): boolean {
+  const text = `${repo.name} ${repo.description ?? ""}`.toLowerCase();
+  const hasBeginnerKeyword = BEGINNER_KEYWORDS.some((keyword) => text.includes(keyword));
+  const isVerySmall = repo.size < 100;
+  const hasNoSignal = repo.stargazers_count === 0 && repo.forks_count === 0;
+
+  return hasBeginnerKeyword && isVerySmall && hasNoSignal;
+}
+
+function scoreRepository(repo: GitHubRepo): number {
+  const descriptionLength = repo.description?.length ?? 0;
+  const topicScore = Math.min((repo.topics ?? []).length, 6) * 2;
+  const hasHomepage = repo.homepage ? 5 : 0;
+  const hasGoodDescription = descriptionLength >= 45 ? 6 : descriptionLength >= 20 ? 3 : 0;
+
+  return (
+    repo.stargazers_count * 5 +
+    repo.forks_count * 3 +
+    topicScore +
+    hasHomepage +
+    hasGoodDescription +
+    Math.min(repo.size / 200, 8)
+  );
+}
 
 export async function getCodeProjects(): Promise<CodeProject[]> {
-  const user = process.env.GITHUB_USERNAME;
+  const configuredUser = process.env.GITHUB_USERNAME;
+  const user =
+    !configuredUser || configuredUser === DEFAULT_USER
+      ? FALLBACK_GITHUB_USER
+      : configuredUser;
   const token = process.env.GITHUB_TOKEN;
+  const forcedTop = parseCsvEnv(process.env.GITHUB_TOP_PROJECTS);
+  const excluded = parseCsvEnv(process.env.GITHUB_EXCLUDE_PROJECTS);
 
-  if (!user || !token || user === DEFAULT_USER) {
+  if (!user) {
     return fallbackCodeProjects;
   }
 
   try {
+    const headers: Record<string, string> = {
+      Accept: "application/vnd.github+json",
+    };
+
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
+
     const response = await fetch(
-      `https://api.github.com/users/${user}/repos?sort=updated&per_page=12`,
+      `https://api.github.com/users/${user}/repos?sort=updated&per_page=100&type=owner`,
       {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: "application/vnd.github+json",
-        },
+        headers,
         next: { revalidate: 3600 },
       },
     );
@@ -41,9 +109,25 @@ export async function getCodeProjects(): Promise<CodeProject[]> {
     }
 
     const repos = (await response.json()) as GitHubRepo[];
-    const normalized = repos
+    const curated = repos
+      .filter((repo) => !repo.archived)
+      .filter((repo) => !repo.fork)
+      .filter((repo) => !excluded.includes(repo.name.toLowerCase()))
       .filter((repo) => !repo.name.toLowerCase().includes("config"))
-      .slice(0, 8)
+      .filter((repo) => !looksLikeSimpleProject(repo))
+      .sort((a, b) => {
+        const aForced = forcedTop.includes(a.name.toLowerCase()) ? 1 : 0;
+        const bForced = forcedTop.includes(b.name.toLowerCase()) ? 1 : 0;
+
+        if (aForced !== bForced) {
+          return bForced - aForced;
+        }
+
+        return scoreRepository(b) - scoreRepository(a);
+      })
+      .slice(0, 9);
+
+    const normalized = curated
       .map<CodeProject>((repo) => ({
         id: String(repo.id),
         name: repo.name,
@@ -57,7 +141,7 @@ export async function getCodeProjects(): Promise<CodeProject[]> {
           width: 1200,
           height: 800,
         },
-        featured: repo.stargazers_count > 0,
+        featured: false,
         source: "github-api",
         stars: repo.stargazers_count,
         forks: repo.forks_count,
@@ -65,7 +149,13 @@ export async function getCodeProjects(): Promise<CodeProject[]> {
         updatedAt: repo.updated_at,
       }));
 
-    return normalized.length ? normalized : fallbackCodeProjects;
+    const featuredIds = new Set(normalized.slice(0, 6).map((project) => project.id));
+    const withFeatured = normalized.map((project) => ({
+      ...project,
+      featured: featuredIds.has(project.id),
+    }));
+
+    return withFeatured.length ? withFeatured : fallbackCodeProjects;
   } catch {
     return fallbackCodeProjects;
   }
