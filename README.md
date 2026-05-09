@@ -71,6 +71,31 @@ Update portfolio content in:
 - `src/content/code-projects.ts`
 - `src/content/case-studies.ts`
 
+For GitHub code projects with custom display names, ordering, and images, edit:
+- `src/content/repo-overrides.ts`
+
+Example entry:
+
+```ts
+myrepo: {
+	displayName: "My Best Project",
+	description: "Short polished description for employers.",
+	forceTop: true,
+	liveUrl: "https://my-live-demo.com",
+	screenshot: {
+		src: "/projects/myrepo-cover.jpg",
+		alt: "Project preview",
+		width: 1200,
+		height: 800,
+	},
+}
+```
+
+How to add your own media image files:
+1. Put image files in `public/projects/`.
+2. Reference them as `/projects/file-name.jpg` in `repo-overrides.ts`.
+3. Use 1200x800 images when possible for consistent cards.
+
 ## Deployment
 
 Recommended deployment flow:

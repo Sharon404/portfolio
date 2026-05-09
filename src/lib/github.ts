@@ -1,4 +1,5 @@
 import { fallbackCodeProjects } from "@/content/code-projects";
+import { repoOverrides } from "@/content/repo-overrides";
 import { CodeProject } from "@/lib/types";
 
 type GitHubRepo = {
@@ -73,6 +74,10 @@ function scoreRepository(repo: GitHubRepo): number {
   );
 }
 
+function getOverride(repoName: string) {
+  return repoOverrides[repoName.toLowerCase()];
+}
+
 export async function getCodeProjects(): Promise<CodeProject[]> {
   const configuredUser = process.env.GITHUB_USERNAME;
   const user =
@@ -112,12 +117,19 @@ export async function getCodeProjects(): Promise<CodeProject[]> {
     const curated = repos
       .filter((repo) => !repo.archived)
       .filter((repo) => !repo.fork)
+      .filter((repo) => !getOverride(repo.name)?.hide)
       .filter((repo) => !excluded.includes(repo.name.toLowerCase()))
       .filter((repo) => !repo.name.toLowerCase().includes("config"))
       .filter((repo) => !looksLikeSimpleProject(repo))
       .sort((a, b) => {
         const aForced = forcedTop.includes(a.name.toLowerCase()) ? 1 : 0;
         const bForced = forcedTop.includes(b.name.toLowerCase()) ? 1 : 0;
+        const aOverride = getOverride(a.name)?.forceTop ? 1 : 0;
+        const bOverride = getOverride(b.name)?.forceTop ? 1 : 0;
+
+        if (aOverride !== bOverride) {
+          return bOverride - aOverride;
+        }
 
         if (aForced !== bForced) {
           return bForced - aForced;
@@ -129,19 +141,26 @@ export async function getCodeProjects(): Promise<CodeProject[]> {
 
     const normalized = curated
       .map<CodeProject>((repo) => ({
+        ...(() => {
+          const override = getOverride(repo.name);
+          return {
+            name: override?.displayName ?? repo.name,
+            description: override?.description ?? repo.description ?? "No description provided.",
+            liveUrl: override?.liveUrl ?? repo.homepage ?? undefined,
+            screenshot:
+              override?.screenshot ??
+              {
+                src: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=1200&q=80&auto=format&fit=crop",
+                alt: "Code workspace screenshot placeholder",
+                width: 1200,
+                height: 800,
+              },
+            featured: override?.forceTop ?? false,
+          };
+        })(),
         id: String(repo.id),
-        name: repo.name,
-        description: repo.description ?? "No description provided.",
         stack: repo.language ? [repo.language] : ["Multiple"],
         repoUrl: repo.html_url,
-        liveUrl: repo.homepage ?? undefined,
-        screenshot: {
-          src: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=1200&q=80&auto=format&fit=crop",
-          alt: "Code workspace screenshot placeholder",
-          width: 1200,
-          height: 800,
-        },
-        featured: false,
         source: "github-api",
         stars: repo.stargazers_count,
         forks: repo.forks_count,
@@ -149,7 +168,12 @@ export async function getCodeProjects(): Promise<CodeProject[]> {
         updatedAt: repo.updated_at,
       }));
 
-    const featuredIds = new Set(normalized.slice(0, 6).map((project) => project.id));
+    const featuredIds = new Set(
+      normalized
+        .filter((project) => project.featured)
+        .map((project) => project.id),
+    );
+    normalized.slice(0, 6).forEach((project) => featuredIds.add(project.id));
     const withFeatured = normalized.map((project) => ({
       ...project,
       featured: featuredIds.has(project.id),
