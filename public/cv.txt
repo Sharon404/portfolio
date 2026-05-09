@@ -1,0 +1,5 @@
+Replace this file with your real CV in PDF format.
+
+Suggested next step:
+1. Add your final resume as public/cv.pdf.
+2. Update About page download link to /cv.pdf.
