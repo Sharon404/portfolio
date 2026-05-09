@@ -1,212 +1,100 @@
 # Creative Portfolio Platform
 
-A unified, production-ready portfolio website that consolidates design work, video showcases, and GitHub code projects into a single employer-ready link.
+A production-ready portfolio website that consolidates design work, video showcases, and GitHub code projects into one employer-ready link.
 
-## ?? Overview
+## Overview
 
-This portfolio is built for creatives and engineers who want to showcase:
-- **Design Work**: Canva, Figma, and graphics design projects
-- **Video Showcase**: Motion graphics, campaign cuts, and UI walkthroughs
-- **Code Projects**: Live GitHub repositories and engineering work
-- **Case Studies**: Deep-dive narratives with process, decisions, and measurable outcomes
+This portfolio supports:
+- Design work from Canva, Figma, and related tools
+- Video showcase content (YouTube/Vimeo embeds)
+- Code projects from GitHub
+- Case studies with problem, process, and outcome
 
-All served from one professional, high-performance platform optimized for recruiter evaluation.
+## Features
 
-## ? Features
+- Responsive design gallery with category filters
+- Video embed section with optimized layout
+- GitHub integration with graceful fallback data
+- Case study listing and dynamic detail pages
+- About and Contact pages with recruiter-focused actions
+- SEO metadata, robots, and sitemap
+- Accessibility improvements (skip link, focus states, reduced motion support)
+- Analytics integration with Vercel Analytics and Speed Insights
 
-### Design & Media
-- **Responsive Design Gallery** with category filters (branding, UI, social, motion, print)
-- **Video Embeds** supporting YouTube, Vimeo, and MP4 with optimized playback
-- **Image Optimization** using Next.js Image component with WebP and AVIF formats
-- **Accessible Media** with descriptive alt text and keyboard navigation
+## Tech Stack
 
-### Engineering
-- **Live GitHub Integration** fetches your latest repositories with stars, forks, and language data
-- **Graceful Fallback** displays curated project cards if GitHub API is unavailable
-- **Case Study Pages** link design and code work with context-rich narratives
-- **Performance First** with server-side caching and static generation
+- Next.js 16 (App Router)
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Vercel Analytics
 
-### UX & Accessibility
-- **Reduced Motion Support** animations respect system preferences
-- **Keyboard Navigation** throughout all sections
-- **High Contrast** color system with WCAG AA compliance
-- **Mobile-First Responsive** design validated across breakpoints
-- **SEO Optimized** with meta tags, Open Graph cards, sitemap, and robots.txt
+## Local Development
 
-## ?? Quick Start
+1. Install dependencies:
 
-### Local Development
-
-\\\ash
+```bash
 npm install
+```
+
+2. Create local environment file:
+
+```bash
 cp .env.example .env.local
-npm run dev
-\\\
+```
 
-Open http://localhost:3000
+3. Set optional GitHub API values in `.env.local`:
 
-### Build for Production
-
-\\\ash
-npm run build
-npm run start
-\\\
-
-## ?? Configuration
-
-### Environment Variables
-
-Create .env.local for GitHub integration (optional):
-
-\\\env
+```env
 GITHUB_USERNAME=your-github-username
 GITHUB_TOKEN=your-github-personal-access-token
-\\\
+```
 
-Generate token: https://github.com/settings/tokens (select public_repo scope)
+4. Run development server:
 
-## ?? Adding Your Content
+```bash
+npm run dev
+```
 
-### Design Projects
-Edit src/content/design-projects.ts with:
-- title, category, tools
-- thumbnail and gallery images
-- challenge, process, outcome
-- Set featured: true to show on home
+5. Build production bundle:
 
-### Code Projects
-Edit src/content/code-projects.ts OR set GitHub credentials to auto-fetch
-
-### Case Studies
-Edit src/content/case-studies.ts with:
-- problem statement
-- process and decisions
-- outcomes and impact
-- linked project IDs
-
-### Videos
-Edit src/content/videos.ts with YouTube, Vimeo, or MP4 URLs
-
-## ?? Deployment
-
-### Deploy on Vercel (Recommended)
-
-1. Code is already pushed to GitHub
-2. Go to https://vercel.com/new
-3. Click "Import Git Repository"
-4. Select your portfolio repository
-5. Configure environment variables (GITHUB_USERNAME, GITHUB_TOKEN)
-6. Click "Deploy"
-
-Your portfolio will be live and auto-deploy on every push.
-
-### Connect Custom Domain
-
-In Vercel project settings ? Domains ? Add your domain
-
-## ?? Performance & SEO
-
-- ? Lighthouse 90+ targets
-- ? Core Web Vitals optimized
-- ? Open Graph and Twitter cards for sharing
-- ? XML sitemap (/sitemap.xml)
-- ? Robots.txt for search crawling
-- ? Image optimization (WebP/AVIF)
-- ? Mobile-first responsive
-
-## ?? Maintenance
-
-### Monthly
-- Add newly completed projects
-- Refresh featured work on home page
-- Validate all external links
-- Review analytics for trends
-
-### Quarterly
-- Run Lighthouse audit
-- Update case study outcomes
-- Archive old/low-relevance projects
-- Refresh SEO metadata
-
-### Before Job Applications
-- Ensure top 3 projects match target role
-- Confirm CV is current and downloadable
-- Verify GitHub repos are public with quality READMEs
-- Test all contact links and email
-
-## ?? Design System
-
-### Colors
-- Background: #f4f2ee (warm neutral)
-- Surface: #fffdf8 (clean white)
-- Text: #202124 (deep charcoal)
-- Accent: #0d6f66 (teal - primary CTAs)
-- Accent 2: #bf5b28 (rust - secondary)
-
-### Typography
-- **Display**: Sora (headings)
-- **Body**: Manrope (text)
-- **Mono**: JetBrains Mono (code)
-
-### Motion
-- Staggered reveals on scroll
-- Smooth filter transitions
-- Reduced-motion accessibility fallbacks
-- 400-450ms animation durations
-
-## ?? Full Documentation
-
-See docs/ directory for:
-- 01-strategic-foundation.md
-- 02-information-architecture.md
-- 03-visual-system.md
-- 04-content-schemas.md
-- 05-media-standards.md
-- 06-migration-checklist.md
-- 07-deployment-runbook.md
-- 08-maintenance-cadence.md
-
-## ?? Troubleshooting
-
-### GitHub projects not loading
-- Verify GITHUB_USERNAME and GITHUB_TOKEN in .env.local
-- Check token has public_repo scope
-- Fallback projects display if API is rate-limited
-
-### Build errors
-\\\ash
-rm -rf .next
+```bash
 npm run build
-\\\
+npm run start
+```
 
-### Performance issues
-- Check image sizes (keep under 200KB)
-- Use WebP format where possible
-- Run: npm run build && npm start
+## Content Editing
 
-## ?? Built With
+Update portfolio content in:
+- `src/content/design-projects.ts`
+- `src/content/videos.ts`
+- `src/content/code-projects.ts`
+- `src/content/case-studies.ts`
 
-- **Framework**: Next.js 16 with TypeScript
-- **Styling**: Tailwind CSS
-- **Animation**: Framer Motion
-- **Deployment**: Vercel
-- **Analytics**: Vercel Analytics & Speed Insights
+## Deployment
 
-## ?? Privacy & Security
+Recommended deployment flow:
+1. Push to GitHub.
+2. Import repository into Vercel.
+3. Configure environment variables in Vercel.
+4. Deploy.
 
-- No cookies or tracking (analytics are anonymized)
-- No backend database or user data collection
-- Vercel enterprise security and DDoS protection
-- HTTPS enforced on all domains
+The project is configured for automatic deployments on push.
 
-## ?? License
+## Project Structure
 
-MIT License - feel free to use this as a template for your portfolio.
+- `src/app`: Route pages and metadata routes
+- `src/components`: UI, layout, motion, media, and analytics components
+- `src/content`: Portfolio data sources
+- `src/lib`: Utility modules and typed models
+- `docs`: Planning, standards, and operational docs
 
----
+## Documentation
 
-**Ready to deploy?** Follow the Vercel deployment steps above. Your portfolio will be live in minutes!
+Additional implementation documentation is available in:
+- `docs/07-deployment-runbook.md`
+- `docs/08-maintenance-cadence.md`
 
-**Repository**: https://github.com/Sharon404/portfolio
+## License
 
-**Last Updated**: May 2026
+MIT
