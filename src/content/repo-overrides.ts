@@ -24,18 +24,3 @@ export const repoOverrides: Record<string, RepoOverride> = {
   },
 };
 
-export const fallbackRepoOverrides: Record<string, RepoOverride> = {
-    grainshare: {
-    displayName: "Grainshare",
-    description: "Featured project selected from GitHub.",
-    forceTop: true,
-    liveUrl: "https://sharon404.github.io/Grainshare/",
-    screenshot: {
-        src: "/projects/grainshare.jpg",
-        alt: "Grainshare project preview",
-        width: 1200,
-        height: 800,
-        },
-    },
-};
-

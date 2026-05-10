@@ -78,6 +78,26 @@ function getOverride(repoName: string) {
   return repoOverrides[repoName.toLowerCase()];
 }
 
+function mergeWithFallbackProjects(projects: CodeProject[]): CodeProject[] {
+  // Keep curated manual projects visible (for example Grainshare) even if API ranking/filtering omits them.
+  const merged: CodeProject[] = [];
+  const seen = new Set<string>();
+
+  const addProject = (project: CodeProject) => {
+    const key = `${project.name.toLowerCase()}|${project.repoUrl.toLowerCase()}`;
+    if (seen.has(key)) {
+      return;
+    }
+    seen.add(key);
+    merged.push(project);
+  };
+
+  fallbackCodeProjects.forEach((project) => addProject(project));
+  projects.forEach((project) => addProject(project));
+
+  return merged.slice(0, 12);
+}
+
 export async function getCodeProjects(): Promise<CodeProject[]> {
   const configuredUser = process.env.GITHUB_USERNAME;
   const user =
@@ -179,7 +199,11 @@ export async function getCodeProjects(): Promise<CodeProject[]> {
       featured: featuredIds.has(project.id),
     }));
 
-    return withFeatured.length ? withFeatured : fallbackCodeProjects;
+    if (!withFeatured.length) {
+      return fallbackCodeProjects;
+    }
+
+    return mergeWithFallbackProjects(withFeatured);
   } catch {
     return fallbackCodeProjects;
   }
