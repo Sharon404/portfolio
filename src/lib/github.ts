@@ -79,7 +79,7 @@ function getOverride(repoName: string) {
 }
 
 function mergeWithFallbackProjects(projects: CodeProject[]): CodeProject[] {
-  // Keep curated manual projects visible (for example Grainshare) even if API ranking/filtering omits them.
+  // Keep curated manual projects visible if they are not present in fetched GitHub data.
   const merged: CodeProject[] = [];
   const seen = new Set<string>();
 
@@ -92,10 +92,41 @@ function mergeWithFallbackProjects(projects: CodeProject[]): CodeProject[] {
     merged.push(project);
   };
 
-  fallbackCodeProjects.forEach((project) => addProject(project));
   projects.forEach((project) => addProject(project));
+  fallbackCodeProjects.forEach((project) => addProject(project));
 
-  return merged.slice(0, 12);
+  return merged;
+}
+
+async function fetchAllGitHubRepos(user: string, headers: Record<string, string>): Promise<GitHubRepo[]> {
+  const perPage = 100;
+  let page = 1;
+  const allRepos: GitHubRepo[] = [];
+
+  while (true) {
+    const response = await fetch(
+      `https://api.github.com/users/${user}/repos?sort=updated&per_page=${perPage}&type=owner&page=${page}`,
+      {
+        headers,
+        next: { revalidate: 3600 },
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error("GitHub API request failed");
+    }
+
+    const repos = (await response.json()) as GitHubRepo[];
+    allRepos.push(...repos);
+
+    if (repos.length < perPage) {
+      break;
+    }
+
+    page += 1;
+  }
+
+  return allRepos;
 }
 
 export async function getCodeProjects(): Promise<CodeProject[]> {
@@ -121,19 +152,7 @@ export async function getCodeProjects(): Promise<CodeProject[]> {
       headers.Authorization = `Bearer ${token}`;
     }
 
-    const response = await fetch(
-      `https://api.github.com/users/${user}/repos?sort=updated&per_page=100&type=owner`,
-      {
-        headers,
-        next: { revalidate: 3600 },
-      },
-    );
-
-    if (!response.ok) {
-      return fallbackCodeProjects;
-    }
-
-    const repos = (await response.json()) as GitHubRepo[];
+    const repos = await fetchAllGitHubRepos(user, headers);
     const curated = repos
       .filter((repo) => !repo.archived)
       .filter((repo) => !repo.fork)
@@ -156,8 +175,7 @@ export async function getCodeProjects(): Promise<CodeProject[]> {
         }
 
         return scoreRepository(b) - scoreRepository(a);
-      })
-      .slice(0, 9);
+      });
 
     const normalized = curated
       .map<CodeProject>((repo) => ({

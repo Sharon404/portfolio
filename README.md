@@ -43,12 +43,14 @@ npm install
 cp .env.example .env.local
 ```
 
-3. Set optional GitHub API values in `.env.local`:
+3. Set GitHub values in `.env.local` (`GITHUB_TOKEN` is optional):
 
 ```env
 GITHUB_USERNAME=your-github-username
-GITHUB_TOKEN=your-github-personal-access-token
+GITHUB_TOKEN=
 ```
+
+With no token, the site still loads public repositories but uses GitHub's lower unauthenticated rate limits.
 
 4. Run development server:
 

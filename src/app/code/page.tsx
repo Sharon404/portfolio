@@ -6,7 +6,7 @@ import { getCodeProjects } from "@/lib/github";
 
 export const metadata: Metadata = {
   title: "Code Projects | Creative Portfolio",
-  description: "GitHub repositories and implementation-focused engineering portfolio.",
+  description: "All GitHub repositories with featured projects highlighted for recruiters.",
 };
 
 export default async function CodePage() {
@@ -66,8 +66,8 @@ export default async function CodePage() {
     <SectionShell>
       <SectionHeading
         kicker="Code Projects"
-        title="Top GitHub projects first, beginner projects filtered out"
-        description="This section prioritizes your strongest repositories using stars, forks, project depth, and quality signals."
+        title="Featured repositories first, then full GitHub catalog"
+        description="All non-archived, non-fork repositories are pulled from GitHub. Featured projects stay on top and every card links to its repository."
       />
 
       <div className="space-y-3">
