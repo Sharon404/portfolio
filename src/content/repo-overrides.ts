@@ -5,6 +5,7 @@ type RepoOverride = {
   description?: string;
   liveUrl?: string;
   forceTop?: boolean;
+  includeFork?: boolean;
   hide?: boolean;
   screenshot?: ImageAsset;
 };
@@ -36,6 +37,10 @@ export const repoOverrides: Record<string, RepoOverride> = {
   },
   virtualfit: {
     hide: true,
+  },
+  skillforge: {
+    includeFork: true,
+    description: "Forked project significantly extended with custom features and improvements.",
   },
 };
 

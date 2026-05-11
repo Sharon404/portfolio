@@ -155,7 +155,7 @@ export async function getCodeProjects(): Promise<CodeProject[]> {
     const repos = await fetchAllGitHubRepos(user, headers);
     const curated = repos
       .filter((repo) => !repo.archived)
-      .filter((repo) => !repo.fork)
+      .filter((repo) => !repo.fork || Boolean(getOverride(repo.name)?.includeFork))
       .filter((repo) => !getOverride(repo.name)?.hide)
       .filter((repo) => !excluded.includes(repo.name.toLowerCase()))
       .filter((repo) => !repo.name.toLowerCase().includes("config"))
