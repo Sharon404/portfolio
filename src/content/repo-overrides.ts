@@ -22,5 +22,20 @@ export const repoOverrides: Record<string, RepoOverride> = {
       height: 800,
     },
   },
+  sharon404: {
+    hide: true,
+  },
+  wordpress: {
+    hide: true,
+  },
+  feb2224: {
+    hide: true,
+  },
+  dart2422: {
+    hide: true,
+  },
+  virtualfit: {
+    hide: true,
+  },
 };
 
