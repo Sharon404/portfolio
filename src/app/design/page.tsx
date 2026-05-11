@@ -24,21 +24,23 @@ export default function DesignPage() {
         <DesignGallery projects={designProjects} />
       </SectionShell>
 
-      <SectionShell>
-        <SectionHeading
-          kicker="Video Showcase"
-          title="Selected video and motion work"
-          description="Campaign cuts and UI walkthrough clips optimized for quick reviewer evaluation."
-        />
-        <div className="grid gap-4 md:grid-cols-2">
-          {videoShowcase.map((video) => (
-            <div key={video.src} className="space-y-2">
-              <VideoEmbed src={video.src} title={video.title} />
-              <p className="text-sm text-text-soft">{video.title}</p>
-            </div>
-          ))}
-        </div>
-      </SectionShell>
+      {videoShowcase.length ? (
+        <SectionShell>
+          <SectionHeading
+            kicker="Video Showcase"
+            title="Selected video and motion work"
+            description="Campaign cuts and UI walkthrough clips optimized for quick reviewer evaluation."
+          />
+          <div className="grid gap-4 md:grid-cols-2">
+            {videoShowcase.map((video) => (
+              <div key={video.src} className="space-y-2">
+                <VideoEmbed src={video.src} title={video.title} />
+                <p className="text-sm text-text-soft">{video.title}</p>
+              </div>
+            ))}
+          </div>
+        </SectionShell>
+      ) : null}
     </>
   );
 }

@@ -7,6 +7,21 @@ type VideoEmbedProps = {
 
 export function VideoEmbed({ src, title }: VideoEmbedProps) {
   const embed = normalizeVideoEmbed(src);
+  const isDirectVideo = /\.(mp4|webm|ogg)(\?.*)?$/i.test(src);
+
+  if (isDirectVideo) {
+    return (
+      <div className="overflow-hidden rounded-2xl border border-black/10 bg-black/5">
+        <video
+          src={src}
+          title={title}
+          controls
+          preload="metadata"
+          className="h-full w-full"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="relative overflow-hidden rounded-2xl border border-black/10 bg-black/5 pt-[56.25%]">
