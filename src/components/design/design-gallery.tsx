@@ -56,6 +56,16 @@ export function DesignGallery({ projects }: DesignGalleryProps) {
               <h3 className="mt-2 text-lg font-semibold">{project.title}</h3>
               <p className="mt-2 text-sm text-text-soft">{project.outcome}</p>
               <p className="mt-3 text-xs text-text-soft">Tools: {project.tools.join(", ")}</p>
+              {project.externalLink ? (
+                <a
+                  href={project.externalLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-block text-sm font-semibold text-accent hover:underline"
+                >
+                  Live Preview
+                </a>
+              ) : null}
             </div>
           </article>
         ))}

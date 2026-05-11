@@ -79,17 +79,17 @@ export const designProjects: DesignProject[] = [
     category: "ui",
     tools: ["React", "TypeScript", "Tailwind CSS"],
     thumbnail: {
-      src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop",
+      src: "/projects/sacco-management-screenshot.png",
       alt: "Sacco Management dashboard interface",
       width: 1200,
       height: 800,
     },
     gallery: [
       {
-        src: "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=1600&q=80&auto=format&fit=crop",
+        src: "/projects/sacco-management-screenshot.png",
         alt: "Dashboard and member management screens",
-        width: 1600,
-        height: 1067,
+        width: 1200,
+        height: 800,
       },
     ],
     challenge: "Design a comprehensive, fully responsive UI for managing SACCO (Savings and Credit Cooperative Organization) operations including member records, contributions, loans, and financial workflows.",
