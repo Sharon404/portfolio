@@ -42,6 +42,12 @@ export const repoOverrides: Record<string, RepoOverride> = {
     includeFork: true,
     description: "Forked project significantly extended with custom features and improvements.",
   },
+  "tutorial-app": {
+    displayName: "Tutorial App",
+    liveUrl: "https://tutorial-app-iac8.onrender.com/",
+    description:
+      "Responsive tutorial platform UI with structured learning flows and production deployment on Render.",
+  },
   "sacco-management-system": {
     displayName: "Sacco Management System (UI)",
     description:

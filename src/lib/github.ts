@@ -159,7 +159,7 @@ export async function getCodeProjects(): Promise<CodeProject[]> {
       .filter((repo) => !getOverride(repo.name)?.hide)
       .filter((repo) => !excluded.includes(repo.name.toLowerCase()))
       .filter((repo) => !repo.name.toLowerCase().includes("config"))
-      .filter((repo) => !looksLikeSimpleProject(repo))
+      .filter((repo) => !looksLikeSimpleProject(repo) || Boolean(getOverride(repo.name)))
       .sort((a, b) => {
         const aForced = forcedTop.includes(a.name.toLowerCase()) ? 1 : 0;
         const bForced = forcedTop.includes(b.name.toLowerCase()) ? 1 : 0;
