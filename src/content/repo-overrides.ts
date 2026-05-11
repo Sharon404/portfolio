@@ -42,5 +42,18 @@ export const repoOverrides: Record<string, RepoOverride> = {
     includeFork: true,
     description: "Forked project significantly extended with custom features and improvements.",
   },
+  "sacco-management-system": {
+    displayName: "Sacco Management System (UI)",
+    description:
+      "Comprehensive, fully responsive SACCO management interface covering dashboard analytics, member records, contributions, loans, welfare, and financial reporting workflows.",
+    liveUrl: "https://sharon404.github.io/Sacco-Management-System/",
+    screenshot: {
+      src: "https://image.thum.io/get/width/1200/crop/800/https://sharon404.github.io/Sacco-Management-System/",
+      alt: "Sacco Management System dashboard UI with finance cards and transaction table",
+      width: 1200,
+      height: 800,
+    },
+    forceTop: true,
+  },
 };
 
