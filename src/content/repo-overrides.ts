@@ -16,12 +16,6 @@ export const repoOverrides: Record<string, RepoOverride> = {
     description: "Featured project selected from GitHub.",
     forceTop: true,
     liveUrl: "https://sharon404.github.io/Grainshare/",
-    screenshot: {
-      src: "/projects/grainshare-screenshot.jpg",
-      alt: "Grainshare live interface preview",
-      width: 1200,
-      height: 800,
-    },
   },
   sharon404: {
     hide: true,
@@ -47,24 +41,12 @@ export const repoOverrides: Record<string, RepoOverride> = {
     liveUrl: "https://tutorial-app-iac8.onrender.com/",
     description:
       "Responsive tutorial platform UI with structured learning flows and production deployment on Render.",
-    screenshot: {
-      src: "/projects/tutorial-app-screenshot.jpg",
-      alt: "Tutorial App live interface preview",
-      width: 1200,
-      height: 800,
-    },
   },
   "sacco-management-system": {
-    displayName: "Sacco Management System (UI)",
+    displayName: "Sacco Management System",
     description:
       "Comprehensive, fully responsive SACCO management interface covering dashboard analytics, member records, contributions, loans, welfare, and financial reporting workflows.",
     liveUrl: "https://sharon404.github.io/Sacco-Management-System/",
-    screenshot: {
-      src: "/projects/sacco-management-screenshot.jpg",
-      alt: "Sacco Management System dashboard UI with finance cards and transaction table",
-      width: 1200,
-      height: 800,
-    },
     forceTop: true,
   },
 };

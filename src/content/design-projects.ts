@@ -73,4 +73,29 @@ export const designProjects: DesignProject[] = [
     outcome: "Delivered a complete launch-week visual package with platform-specific motion cuts.",
     featured: false,
   },
+  {
+    id: "sacco-management-ui",
+    title: "Sacco Management System UI",
+    category: "ui",
+    tools: ["React", "TypeScript", "Tailwind CSS"],
+    thumbnail: {
+      src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop",
+      alt: "Sacco Management dashboard interface",
+      width: 1200,
+      height: 800,
+    },
+    gallery: [
+      {
+        src: "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=1600&q=80&auto=format&fit=crop",
+        alt: "Dashboard and member management screens",
+        width: 1600,
+        height: 1067,
+      },
+    ],
+    challenge: "Design a comprehensive, fully responsive UI for managing SACCO (Savings and Credit Cooperative Organization) operations including member records, contributions, loans, and financial workflows.",
+    process: "Built React components with TypeScript for type safety, styled with Tailwind CSS for responsive design, and implemented admin dashboard patterns for financial data visualization using Recharts.",
+    outcome: "Delivered a production-ready SACCO management interface with dashboard analytics, member portal, loan processing workflows, and financial reporting capabilities deployed on GitHub Pages.",
+    externalLink: "https://sharon404.github.io/Sacco-Management-System/",
+    featured: true,
+  },
 ];

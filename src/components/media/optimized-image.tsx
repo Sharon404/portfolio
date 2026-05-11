@@ -12,8 +12,6 @@ export function OptimizedImage({
   className,
   priority = false,
 }: OptimizedImageProps) {
-  const isLiveCaptureScreenshot = asset.src.includes("image.thum.io");
-
   return (
     <Image
       src={asset.src}
@@ -23,7 +21,6 @@ export function OptimizedImage({
       className={className}
       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 40vw"
       priority={priority}
-      unoptimized={isLiveCaptureScreenshot}
     />
   );
 }
