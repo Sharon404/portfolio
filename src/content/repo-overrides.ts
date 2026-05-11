@@ -47,6 +47,12 @@ export const repoOverrides: Record<string, RepoOverride> = {
     liveUrl: "https://tutorial-app-iac8.onrender.com/",
     description:
       "Responsive tutorial platform UI with structured learning flows and production deployment on Render.",
+    screenshot: {
+      src: "https://image.thum.io/get/width/1200/crop/800/https://tutorial-app-iac8.onrender.com/",
+      alt: "Tutorial App live interface preview",
+      width: 1200,
+      height: 800,
+    },
   },
   "sacco-management-system": {
     displayName: "Sacco Management System (UI)",
