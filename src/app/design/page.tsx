@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { DesignGallery } from "@/components/design/design-gallery";
-import { VideoEmbed } from "@/components/media/video-embed";
+import { VideoShowcaseGrid } from "@/components/media/video-showcase-grid";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SectionShell } from "@/components/ui/section-shell";
 import { designProjects } from "@/content/design-projects";
@@ -29,16 +29,9 @@ export default function DesignPage() {
           <SectionHeading
             kicker="Video Showcase"
             title="Selected video and motion work"
-            description="Campaign cuts and UI walkthrough clips optimized for quick reviewer evaluation."
+            description="Muted autoplay previews while scrolling, tap to open full playback, and tap outside to close."
           />
-          <div className="grid gap-4 md:grid-cols-2">
-            {videoShowcase.map((video) => (
-              <div key={video.src} className="space-y-2">
-                <VideoEmbed src={video.src} title={video.title} />
-                <p className="text-sm text-text-soft">{video.title}</p>
-              </div>
-            ))}
-          </div>
+          <VideoShowcaseGrid videos={videoShowcase} />
         </SectionShell>
       ) : null}
     </>
