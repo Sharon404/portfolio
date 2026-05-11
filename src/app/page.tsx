@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { OptimizedImage } from "@/components/media/optimized-image";
 import { Reveal } from "@/components/motion/reveal";
 import { StaggerGrid } from "@/components/motion/stagger-grid";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -16,7 +17,17 @@ export const metadata: Metadata = {
 export default async function Home() {
   const codeProjects = await getCodeProjects();
   const featuredDesign = designProjects.filter((project) => project.featured).slice(0, 2);
-  const featuredCode = codeProjects.filter((project) => project.featured).slice(0, 2);
+  const preferredCodeNames = ["grainshare", "sacco management system"];
+  const preferredCode = codeProjects.filter((project) =>
+    preferredCodeNames.includes(project.name.toLowerCase()),
+  );
+  const fallbackCode = codeProjects.filter((project) => project.featured);
+  const featuredCode = [...preferredCode, ...fallbackCode]
+    .filter(
+      (project, index, all) =>
+        all.findIndex((candidate) => candidate.id === project.id) === index,
+    )
+    .slice(0, 2);
 
   return (
     <>
@@ -78,14 +89,20 @@ export default async function Home() {
         <SectionHeading
           kicker="Featured"
           title="Code Highlights"
-          description="Recent projects with direct access to repositories and live links where available."
+          description="Grainshare and Sacco Management showcased with live screenshots, repository links, and demos."
         />
         <StaggerGrid className="grid gap-4 md:grid-cols-2">
           {featuredCode.map((project) => (
-            <article key={project.id} className="rounded-2xl border border-black/10 bg-white p-5">
-              <h3 className="text-xl font-semibold">{project.name}</h3>
-              <p className="mt-2 text-sm text-text-soft">{project.description}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
+            <article key={project.id} className="overflow-hidden rounded-2xl border border-black/10 bg-white">
+              <OptimizedImage
+                asset={project.screenshot}
+                className="h-48 w-full object-cover"
+                priority
+              />
+              <div className="p-5">
+                <h3 className="text-xl font-semibold">{project.name}</h3>
+                <p className="mt-2 text-sm text-text-soft">{project.description}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
                 {project.stack.slice(0, 3).map((item) => (
                   <span
                     key={item}
@@ -94,6 +111,28 @@ export default async function Home() {
                     {item}
                   </span>
                 ))}
+                </div>
+
+                <div className="mt-4 flex flex-wrap gap-4 text-sm">
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold text-accent hover:underline"
+                  >
+                    Repository
+                  </a>
+                  {project.liveUrl ? (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-semibold text-accent-2 hover:underline"
+                    >
+                      Live Demo
+                    </a>
+                  ) : null}
+                </div>
               </div>
             </article>
           ))}
