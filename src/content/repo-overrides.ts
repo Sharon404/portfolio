@@ -17,8 +17,8 @@ export const repoOverrides: Record<string, RepoOverride> = {
     forceTop: true,
     liveUrl: "https://sharon404.github.io/Grainshare/",
     screenshot: {
-      src: "https://images.unsplash.com/photo-1551281044-8b0a1c6ca3d5?w=1200&q=80&auto=format&fit=crop",
-      alt: "Dashboard style project preview for Grainshare",
+      src: "https://image.thum.io/get/width/1200/crop/800/https://sharon404.github.io/Grainshare/",
+      alt: "Grainshare live interface preview",
       width: 1200,
       height: 800,
     },
