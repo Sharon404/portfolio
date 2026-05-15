@@ -20,6 +20,18 @@ export const designProjects: DesignProject[] = [
         height: 800,
       },
       {
+        src: "/projects/Business%20plan%20cover.png",
+        alt: "Business plan cover design",
+        width: 1200,
+        height: 800,
+      },
+      {
+        src: "/projects/Grainshare%20Logo.png",
+        alt: "Grainshare logo design",
+        width: 1200,
+        height: 800,
+      },
+      {
         src: "/projects/Welcome%20to%20Your%20Digital%20Growth%20Partner%20(1).png",
         alt: "Digital growth partner campaign visual",
         width: 1200,
@@ -140,6 +152,12 @@ export const designProjects: DesignProject[] = [
         width: 1200,
         height: 800,
       },
+      {
+        src: "/projects/Unbeatable%20Prices%20Today.png",
+        alt: "Unbeatable Prices Today promotional social graphic",
+        width: 1200,
+        height: 800,
+      },
     ],
     challenge: "Create scroll-stopping social designs for agriculture and daily engagement themes.",
     process: "Produced template-driven concepts with varied hierarchy and color combinations for repeat campaigns.",
@@ -158,6 +176,12 @@ export const designProjects: DesignProject[] = [
       height: 800,
     },
     gallery: [
+      {
+        src: "/projects/Mzima%20Banner.png",
+        alt: "Mzima banner design",
+        width: 1200,
+        height: 800,
+      },
       {
         src: "/projects/Black%20and%20White%20Mother's%20Day%20Card.png",
         alt: "Black and white mothers day card design",
