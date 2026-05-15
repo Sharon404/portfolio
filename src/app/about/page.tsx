@@ -28,16 +28,8 @@ export default function AboutPage() {
           high-visibility launches.
         </p>
         <div className="flex flex-wrap gap-3">
-          <TrackLink
-            href="/cv.txt"
-            eventName="cv_download_click"
-            eventData={{ source: "about_page" }}
-            className="rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent/90"
-          >
-            Download CV (txt)
-          </TrackLink>
           <a
-            href="/projects/Sharon%20Professional%20Resume.pdf"
+            href="/Sharon%20Professional%20Resume.pdf"
             download
             className="rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent/90"
             style={{ textDecoration: "none" }}
@@ -45,7 +37,7 @@ export default function AboutPage() {
             Download Resume (PDF)
           </a>
           <a
-            href="https://github.com/your-username"
+            href="https://github.com/Sharon404"
             target="_blank"
             rel="noreferrer"
             className="rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-semibold hover:border-accent/50"
