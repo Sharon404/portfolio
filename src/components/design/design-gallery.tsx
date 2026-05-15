@@ -56,6 +56,19 @@ export function DesignGallery({ projects }: DesignGalleryProps) {
               <h3 className="mt-2 text-lg font-semibold">{project.title}</h3>
               <p className="mt-2 text-sm text-text-soft">{project.outcome}</p>
               <p className="mt-3 text-xs text-text-soft">Tools: {project.tools.join(", ")}</p>
+
+              {project.gallery.length ? (
+                <div className="mt-4 grid grid-cols-3 gap-2">
+                  {project.gallery.map((asset, index) => (
+                    <OptimizedImage
+                      key={`${project.id}-gallery-${index}`}
+                      asset={asset}
+                      className="h-20 w-full rounded-md object-cover"
+                    />
+                  ))}
+                </div>
+              ) : null}
+
               {project.externalLink ? (
                 <a
                   href={project.externalLink}
