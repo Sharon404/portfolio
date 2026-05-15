@@ -34,8 +34,16 @@ export default function AboutPage() {
             eventData={{ source: "about_page" }}
             className="rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent/90"
           >
-            Download CV
+            Download CV (txt)
           </TrackLink>
+          <a
+            href="/projects/Sharon%20Professional%20Resume.pdf"
+            download
+            className="rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent/90"
+            style={{ textDecoration: "none" }}
+          >
+            Download Resume (PDF)
+          </a>
           <a
             href="https://github.com/your-username"
             target="_blank"
