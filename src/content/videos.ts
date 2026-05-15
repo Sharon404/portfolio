@@ -53,4 +53,28 @@ export const videoShowcase: VideoAsset[] = [
 		src: "/projects/world%20earth%20day.mp4",
 		title: "World Earth Day",
 	},
+	{
+		src: "/projects/Bees%20and%20elephants.mp4",
+		title: "Bees and Elephants",
+	},
+	{
+		src: "/projects/Butterflies.mp4",
+		title: "Butterflies",
+	},
+	{
+		src: "/projects/join%20modern%20agriculture.mp4",
+		title: "Join Modern Agriculture",
+	},
+	{
+		src: "/projects/Rabbits.mp4",
+		title: "Rabbits",
+	},
+	{
+		src: "/projects/Solar%20panels.mp4",
+		title: "Solar Panels",
+	},
+	{
+		src: "/projects/Zero%20wastage%20living.mp4",
+		title: "Zero Wastage Living",
+	},
 ];

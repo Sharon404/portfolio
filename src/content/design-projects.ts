@@ -75,6 +75,36 @@ export const designProjects: DesignProject[] = [
         height: 800,
       },
       {
+        src: "/projects/6Rs%20for%20conservation.png",
+        alt: "6Rs for conservation social post",
+        width: 1200,
+        height: 800,
+      },
+      {
+        src: "/projects/be%20the%20voice%20of%20the%20planet.jpg",
+        alt: "Be the voice of the planet social graphic",
+        width: 1200,
+        height: 800,
+      },
+      {
+        src: "/projects/did%20you%20know.jpg",
+        alt: "Did you know conservation social card",
+        width: 1200,
+        height: 800,
+      },
+      {
+        src: "/projects/Fun%20Fact%20About%20Elephants%20Instagram%20Post.png",
+        alt: "Fun fact about elephants social post",
+        width: 1200,
+        height: 800,
+      },
+      {
+        src: "/projects/seeds%20of%20change.jpg",
+        alt: "Seeds of change campaign visual",
+        width: 1200,
+        height: 800,
+      },
+      {
         src: "/projects/Swali%20La%20Leo.png",
         alt: "Swali La Leo visual variation one",
         width: 1200,
@@ -89,6 +119,24 @@ export const designProjects: DesignProject[] = [
       {
         src: "/projects/Swali%20La%20Leo%20(2).png",
         alt: "Swali La Leo visual variation three",
+        width: 1200,
+        height: 800,
+      },
+      {
+        src: "/projects/swali%20la%20leo%20conservation.png",
+        alt: "Swali la leo conservation variant",
+        width: 1200,
+        height: 800,
+      },
+      {
+        src: "/projects/swali%20la%20leo%20rabbit.png",
+        alt: "Swali la leo rabbit variant",
+        width: 1200,
+        height: 800,
+      },
+      {
+        src: "/projects/Swali%20la%20leo%20recycling.jpg",
+        alt: "Swali la leo recycling variant",
         width: 1200,
         height: 800,
       },
