@@ -120,15 +120,28 @@ export function DesignGallery({ projects }: DesignGalleryProps) {
       {activeImage ? (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
-          onClick={() => setActiveImage(null)}
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              setActiveImage(null);
+            }
+          }}
           role="dialog"
           aria-modal="true"
           aria-label={activeImage.alt}
         >
-          <div className="w-full max-w-6xl" onClick={(event) => event.stopPropagation()}>
+          <button
+            type="button"
+            aria-label="Close image preview"
+            onClick={() => setActiveImage(null)}
+            className="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-sm font-semibold text-black shadow hover:bg-white"
+          >
+            Close
+          </button>
+
+          <div className="max-h-[90vh] max-w-6xl" onMouseDown={(event) => event.stopPropagation()}>
             <OptimizedImage
               asset={activeImage}
-              className="max-h-[90vh] w-full rounded-xl object-contain"
+              className="max-h-[90vh] w-auto rounded-xl object-contain"
               priority
             />
           </div>
