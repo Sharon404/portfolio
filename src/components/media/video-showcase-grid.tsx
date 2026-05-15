@@ -58,7 +58,7 @@ export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
         }
       },
       {
-        threshold: 0.6,
+        threshold: 0.15,
       },
     );
 
@@ -130,6 +130,7 @@ export function VideoShowcaseGrid({ videos }: VideoShowcaseGridProps) {
                 }}
                 data-index={index}
                 src={video.src}
+                autoPlay
                 muted
                 loop
                 playsInline
