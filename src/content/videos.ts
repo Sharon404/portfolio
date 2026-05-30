@@ -38,6 +38,10 @@ export const videoShowcase: VideoAsset[] = [
 		title: "New Healthy Food",
 	},
 	{
+		src: "/projects/Nutrition%20video.mp4",
+		title: "Nutrition Video",
+	},
+	{
 		src: "/projects/There%E2%80%99s%20No%20Harvest%20Without%20The%20Process.%20(1).mp4",
 		title: "There Is No Harvest Without the Process",
 	},

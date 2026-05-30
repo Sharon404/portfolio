@@ -129,8 +129,8 @@ export const designProjects: DesignProject[] = [
         height: 800,
       },
       {
-        src: "/projects/Swali%20La%20Leo%20(2).png",
-        alt: "Swali La Leo visual variation three",
+        src: "/projects/Herbs%20post.jpg",
+        alt: "Herbs educational social post",
         width: 1200,
         height: 800,
       },
@@ -141,8 +141,8 @@ export const designProjects: DesignProject[] = [
         height: 800,
       },
       {
-        src: "/projects/swali%20la%20leo%20rabbit.png",
-        alt: "Swali la leo rabbit variant",
+        src: "/projects/Nutrition%20tips.jpg",
+        alt: "Nutrition tips social visual",
         width: 1200,
         height: 800,
       },
@@ -183,8 +183,8 @@ export const designProjects: DesignProject[] = [
         height: 800,
       },
       {
-        src: "/projects/Black%20and%20White%20Mother's%20Day%20Card.png",
-        alt: "Black and white mothers day card design",
+        src: "/projects/Herbs%20post.jpg",
+        alt: "Herbs promotional card design",
         width: 1200,
         height: 800,
       },
