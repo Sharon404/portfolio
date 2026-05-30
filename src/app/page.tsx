@@ -36,29 +36,29 @@ export default async function Home() {
           <p className="mb-4 font-mono text-xs uppercase tracking-[0.24em] text-accent">
             Creative Engineer Portfolio
           </p>
-          <h1 className="max-w-3xl font-display text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
+          <h1 className="max-w-3xl font-display text-3xl font-semibold tracking-tight text-foreground sm:text-6xl">
             One destination for design, motion, and production-ready code.
           </h1>
-          <p className="mt-5 max-w-2xl text-lg text-text-soft">
+          <p className="mt-4 max-w-2xl text-base text-text-soft sm:mt-5 sm:text-lg">
             This portfolio unifies Canva and Figma work, video showcases, and GitHub
             engineering projects into a single hiring-ready narrative.
           </p>
-          <div className="mt-7 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-col gap-2 sm:mt-7 sm:flex-row sm:flex-wrap sm:gap-3">
             <Link
               href="/design"
-              className="rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent/90"
+              className="inline-flex min-h-11 items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent/90"
             >
               Explore Design Work
             </Link>
             <Link
               href="/code"
-              className="rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-semibold hover:border-accent/50"
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-semibold hover:border-accent/50"
             >
               Explore Code Projects
             </Link>
             <Link
               href="/contact"
-              className="rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-semibold hover:border-accent-2/50"
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-semibold hover:border-accent-2/50"
             >
               Contact
             </Link>
@@ -78,7 +78,7 @@ export default async function Home() {
               <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-accent-2">
                 {project.category}
               </p>
-              <h3 className="text-xl font-semibold">{project.title}</h3>
+              <h3 className="text-lg font-semibold sm:text-xl">{project.title}</h3>
               <p className="mt-2 text-sm text-text-soft">{project.outcome}</p>
             </article>
           ))}
@@ -96,11 +96,11 @@ export default async function Home() {
             <article key={project.id} className="overflow-hidden rounded-2xl border border-black/10 bg-white">
               <OptimizedImage
                 asset={project.screenshot}
-                className="h-48 w-full object-cover"
+                className="h-40 w-full object-cover sm:h-48"
                 priority
               />
               <div className="p-5">
-                <h3 className="text-xl font-semibold">{project.name}</h3>
+                <h3 className="text-lg font-semibold sm:text-xl">{project.name}</h3>
                 <p className="mt-2 text-sm text-text-soft">{project.description}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                 {project.stack.slice(0, 3).map((item) => (

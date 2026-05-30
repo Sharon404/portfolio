@@ -16,9 +16,9 @@ export default async function CodePage() {
 
   const renderProjectCard = (project: (typeof projects)[number]) => (
     <article key={project.id} className="overflow-hidden rounded-2xl border border-black/10 bg-white">
-      <OptimizedImage asset={project.screenshot} className="h-44 w-full object-cover" />
+      <OptimizedImage asset={project.screenshot} className="h-36 w-full object-cover sm:h-44" />
       <div className="p-4">
-        <h3 className="text-xl font-semibold">{project.name}</h3>
+        <h3 className="text-lg font-semibold sm:text-xl">{project.name}</h3>
         <p className="mt-2 text-sm text-text-soft">{project.description}</p>
 
         <div className="mt-3 flex flex-wrap gap-2">
@@ -32,7 +32,7 @@ export default async function CodePage() {
           ))}
         </div>
 
-        <div className="mt-4 flex flex-wrap items-center gap-4 text-sm">
+        <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
           <a
             href={project.repoUrl}
             target="_blank"

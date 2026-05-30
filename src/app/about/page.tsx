@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { TrackLink } from "@/components/analytics/track-link";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SectionShell } from "@/components/ui/section-shell";
 

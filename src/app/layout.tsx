@@ -72,7 +72,7 @@ export default function RootLayout({
         <SiteHeader />
         <main
           id="content"
-          className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 px-5 py-8 sm:px-8 sm:py-10"
+          className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-4 px-4 py-5 sm:gap-6 sm:px-8 sm:py-10"
         >
           {children}
         </main>
