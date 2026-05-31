@@ -117,8 +117,8 @@ export const designProjects: DesignProject[] = [
         height: 800,
       },
       {
-        src: "/projects/Swali%20La%20Leo.png",
-        alt: "Swali La Leo visual variation one",
+        src: "/projects/World%20Bee%20Day.jpg",
+        alt: "World Bee Day social awareness visual",
         width: 1200,
         height: 800,
       },
@@ -183,8 +183,8 @@ export const designProjects: DesignProject[] = [
         height: 800,
       },
       {
-        src: "/projects/Herbs%20post.jpg",
-        alt: "Herbs promotional card design",
+        src: "/projects/Ecology.jpg",
+        alt: "Ecology themed campaign card design",
         width: 1200,
         height: 800,
       },
